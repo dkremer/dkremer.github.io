@@ -1,0 +1,84 @@
+<html>
+	<head>
+		<title>Stylesheet Example</title>
+	</head>
+
+	
+<script language="JavaScript">
+<!--
+
+function SymError()
+{
+  return true;
+}
+
+window.onerror = SymError;
+
+var SymRealWinOpen = window.open;
+
+function SymWinOpen(url, name, attributes)
+{
+  return (new Object());
+}
+
+window.open = SymWinOpen;
+
+//-->
+</script>
+
+<script>		
+		var xmlDoc;
+		var xslt;
+
+		function init(field, dataType, order) {
+			var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");			
+			xslDoc.async = false;
+			xslDoc.resolveExternals = false;
+			xslDoc.load("Stylesheet.xsl");
+	
+			xslt = new ActiveXObject("Msxml2.XSLTemplate");
+			xslt.stylesheet = xslDoc;
+	
+			xmlDoc = new ActiveXObject("Msxml2.DOMDocument");
+			xmlDoc.async = false;
+			xmlDoc.resolveExternals = false;
+			xmlDoc.load("Stylesheet.xml");
+			if (xmlDoc.parseError.errorCode != 0) {
+				alert(xmlDoc.parseError.reason);
+				window.history.go(-1);
+				return;
+			}
+		
+			sortIt("totalTime", "number", "descending");
+		}
+	
+		function sortIt(field, dataType, order) {
+			var xslProc = xslt.createProcessor();
+			xslProc.input = xmlDoc;
+			xslProc.addParameter("sortField", field);
+			xslProc.addParameter("sortType", dataType);
+			xslProc.addParameter("sortOrder", order);
+			xslProc.transform();
+		
+			timers.innerHTML = xslProc.output;
+		}
+	</script>
+
+	<body onload="var SymTmpWinOpen = window.open; window.open = SymWinOpen; init(); window.open = SymTmpWinOpen;">
+		<h1 align="center">Style Sheet Example</h1>
+		<p>
+			The following contents are produced by running an XSL style sheet against an XML data island.  Clicking on the column headings
+			sorts the table without reloading the xml data.
+		</p>
+		<div id="timers"></DIV>
+	</body>
+
+<script language="JavaScript">
+<!--
+
+window.open = SymRealWinOpen;
+
+//-->
+</script>
+
+</html>

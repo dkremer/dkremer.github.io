@@ -1,0 +1,56 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Drop Down Links</title>
+</head>
+
+<body>
+
+<h1 align="center">Navigation List</h1>
+
+<p>Using a &quot;Go&quot; Button:</p>
+<form name="goLinkForm">
+Links:&nbsp;
+<select name="linkList">
+	<option value="http://www.microsoft.com">Microsoft</option>
+	<option value="http://www.sun.com">Sun</option>
+</select>
+<input type="button" value="Go!" 
+		onClick="location.href=document.goLinkForm.linkList.options[
+				document.goLinkForm.linkList.selectedIndex].value;">
+</form>
+<p>&nbsp;</p>
+<p>No &quot;Go&quot; button:</p>
+<form name="autoLinkForm1">
+Links:&nbsp;
+<select name="linkList"
+		onChange="if (document.autoLinkForm1.linkList.selectedIndex > 0)
+				location.href=document.autoLinkForm1.linkList.options[
+						document.autoLinkForm1.linkList.selectedIndex].value;">
+	<option>Choose:</option>
+	<option value="http://www.microsoft.com">Microsoft</option>
+	<option value="http://www.sun.com">Sun</option>
+</select>
+</form>
+
+<p>&nbsp;</p>
+<p>No &quot;Go&quot; button and open new window:</p>
+<form name="autoLinkForm2">
+Links:&nbsp;
+<select name="linkList"
+		onChange="if (document.autoLinkForm2.linkList.selectedIndex > 0)
+				window.open(document.autoLinkForm2.linkList.options[
+						document.autoLinkForm2.linkList.selectedIndex].value);">
+	<option>Choose:</option>
+	<option value="http://www.microsoft.com">Microsoft</option>
+	<option value="http://www.sun.com">Sun</option>
+</select>
+</form>
+
+</body>
+
+</html>
