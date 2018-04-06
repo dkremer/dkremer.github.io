@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"/>
+    <script type="text/javascript">
+        function gocomicsurl(comicname) {
+            var date = new Date();
+            var y = date.getFullYear();
+            var m = date.getMonth() +1;
+            if(m < 10){m = '0' + m;}
+            var d = date.getDate();
+            if(d < 10){d = '0' + d;}
+            var date = y + "/" + m + "/" + d;
+
+            return 'http://www.gocomics.com/' + comicname + '/'+ date + '/';
+        }
+
+    </script>
+    <title>Comics</title>
+</head>
+<body onload='location.href = gocomicsurl((new URL(location.href).searchParams.get("name")))'>
+</body>
+</html>
